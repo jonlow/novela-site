@@ -11,7 +11,7 @@ steps:
   image: jonrlow/ubuntu-gatsby-netlify
   commands:
   - echo "${DRONE_BRANCH}"
-  - echo "${DRONE_COMMIT_SHA | cut -c1-7}"
+  - echo "${DRONE_COMMIT_SHA}"
   - echo "${DRONE_COMMIT_MESSAGE}"
 
 - name: install dependencies
@@ -23,7 +23,7 @@ steps:
   - yarn
   - gatsby build
   # - GITHASH=$(git rev-parse --short HEAD 2>&1)
-  - netlify deploy --prod --dir=public --functions=functions --message="${DRONE_COMMIT_SHA | cut -c1-7} ${DRONE_COMMIT_MESSAGE}"
+  - netlify deploy --prod --dir=public --functions=functions --message="${DRONE_COMMIT_SHA} ${DRONE_COMMIT_MESSAGE}"
   environment:
     NETLIFY_AUTH_TOKEN:
       from_secret: NETLIFY_AUTH_TOKEN
