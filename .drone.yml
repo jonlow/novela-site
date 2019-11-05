@@ -12,7 +12,7 @@ steps:
   commands:
   - buildNum=${DRONE_COMMIT_SHA}
   - build=${buildNum:0:10}
-  - echo "${build}"
+  - echo "${buildNum}"
   - echo "${DRONE_BRANCH}"
   - echo "${DRONE_COMMIT_SHA}"
   - echo "${DRONE_COMMIT_MESSAGE}"
