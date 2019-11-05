@@ -10,7 +10,7 @@ steps:
 - name: Show env variables
   image: jonrlow/ubuntu-gatsby-netlify
   commands:
-  - export buildNum="${DRONE_COMMIT_SHA}"
+  - buildNum="${DRONE_COMMIT_SHA}"
   # - build="${buildNum:0:10}"
   - echo ${buildNum:0:5}
   - echo ${buildNum}
