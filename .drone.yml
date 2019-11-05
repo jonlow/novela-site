@@ -10,6 +10,7 @@ steps:
 - name: Show env variables
   image: jonrlow/ubuntu-gatsby-netlify
   commands:
+  - JON = $(DRONE_COMMIT_SHA | cut -c1-7)
   - echo "${DRONE_BRANCH}"
   - echo "${DRONE_COMMIT_SHA}"
   - echo "${DRONE_COMMIT_MESSAGE}"
