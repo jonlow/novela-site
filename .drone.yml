@@ -10,8 +10,8 @@ steps:
 - name: Show env variables
   image: jonrlow/ubuntu-gatsby-netlify
   commands:
-  - buildNum=${DRONE_COMMIT_SHA} // this command returns commit hash
-  - build=${buildNum:0:10} //truncates commit hash to only first 20 chars
+  - buildNum=${DRONE_COMMIT_SHA}
+  - build=${buildNum:0:10}
   - export myvar="${build}"
   - echo "${DRONE_BRANCH}"
   - echo "${DRONE_COMMIT_SHA}"
