@@ -1,0 +1,35 @@
+kind: pipeline
+type: docker
+name: default
+
+concurrency:
+  limit: 1
+
+steps:
+
+- name: Show env variables
+  image: jonrlow/ubuntu-gatsby-netlify
+  commands:
+  - echo "${DRONE_BRANCH}"
+  - echo "${DRONE_COMMIT_SHA}"
+  - echo "${DRONE_COMMIT_MESSAGE}"
+
+- name: install dependencies
+  image: jonrlow/ubuntu-gatsby-netlify
+  commands:
+  # - ${DRONE_BRANCH}
+  # - ${DRONE_COMMIT_SHA}
+  # - "The image tag is ${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}"
+  - yarn
+  - gatsby build
+  # - GITHASH=$(git rev-parse --short HEAD 2>&1)
+  - netlify deploy --prod --dir=public --functions=functions --message="wasup dude"
+  environment:
+    NETLIFY_AUTH_TOKEN:
+      from_secret: NETLIFY_AUTH_TOKEN
+    NETLIFY_SITE_ID: 6b5b50c1-964c-4b75-93f2-d18c2c260947
+
+
+trigger:
+  branch:
+  - master
