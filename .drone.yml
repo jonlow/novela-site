@@ -7,20 +7,15 @@ concurrency:
 
 steps:
 
-- name: Show env variables
+- name: Install dependencies
   image: jonrlow/ubuntu-gatsby-netlify
   commands:
-  - echo "${DRONE_COMMIT_SHA:0:7}"
-
-- name: install dependencies
-  image: jonrlow/ubuntu-gatsby-netlify
-  commands:
-  # - ${DRONE_BRANCH}
-  # - ${DRONE_COMMIT_SHA}
-  # - "The image tag is ${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}"
   - yarn
   - gatsby build
-  # - GITHASH=$(git rev-parse --short HEAD 2>&1)
+
+- name: Deploy to Netlify
+  image: jonrlow/ubuntu-gatsby-netlify
+  commands:
   - netlify deploy --prod --dir=public --functions=functions --message="${DRONE_BRANCH}@${DRONE_COMMIT_SHA:0:7} - ${DRONE_COMMIT_MESSAGE}"
   environment:
     NETLIFY_AUTH_TOKEN:
