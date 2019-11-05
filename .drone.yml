@@ -21,7 +21,7 @@ steps:
   - yarn
   - gatsby build
   # - GITHASH=$(git rev-parse --short HEAD 2>&1)
-  - netlify deploy --prod --dir=public --functions=functions --message="${DRONE_COMMIT_SHA:0:7} ${DRONE_COMMIT_MESSAGE}"
+  - netlify deploy --prod --dir=public --functions=functions --message="${DRONE_BRANCH}@${DRONE_COMMIT_SHA:0:7} - ${DRONE_COMMIT_MESSAGE}"
   environment:
     NETLIFY_AUTH_TOKEN:
       from_secret: NETLIFY_AUTH_TOKEN
