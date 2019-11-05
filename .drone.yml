@@ -13,6 +13,7 @@ steps:
   - export buildNum="${DRONE_COMMIT_SHA}"
   # - build="${buildNum:0:10}"
   - echo ${buildNum:0:5}
+  - echo ${buildNum}
   # - echo "${buildNum}"
   # - echo "${DRONE_BRANCH}"
   - echo "${DRONE_COMMIT_SHA}"
