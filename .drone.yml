@@ -16,7 +16,7 @@ steps:
   - echo ${buildNum}
   # - echo "${buildNum}"
   # - echo "${DRONE_BRANCH}"
-  - echo "${DRONE_COMMIT_SHA}"
+  - echo "${DRONE_COMMIT_SHA:0:10}"
   # - echo "${DRONE_COMMIT_MESSAGE}"
 
 - name: install dependencies
