@@ -13,6 +13,11 @@ steps:
   - yarn
   - gatsby build
 
+- name: Gatsby Build
+  image: jonrlow/ubuntu-gatsby-netlify
+  commands:
+  - gatsby build
+
 - name: Deploy to Netlify
   image: jonrlow/ubuntu-gatsby-netlify
   commands:
