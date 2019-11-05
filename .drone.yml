@@ -11,7 +11,6 @@ steps:
   image: jonrlow/ubuntu-gatsby-netlify
   commands:
   - yarn
-  - gatsby build
 
 - name: Gatsby Build
   image: jonrlow/ubuntu-gatsby-netlify
